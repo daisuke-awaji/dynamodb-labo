@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  HelloWorldFunction:
+    Properties:
+      CodeUri: s3://cf-templates-kl6v54konfxv-us-east-1/36d1f0f08eafad5e3b74a409814740d3
+      Handler: app.lambda_handler
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+  Table001:
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      SSESpecification:
+        SSEEnabled: true
+      TableName: my-table-001
+      Tags:
+        AppType: Serverless
+        Department: Engineering
+    Type: AWS::Serverless::SimpleTable
+  Table002:
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      SSESpecification:
+        SSEEnabled: true
+      TableName: my-table-002
+      Tags:
+        AppType: Serverless
+        Department: Engineering
+    Type: AWS::Serverless::SimpleTable
+Transform: AWS::Serverless-2016-10-31
